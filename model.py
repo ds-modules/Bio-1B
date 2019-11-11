@@ -140,11 +140,12 @@ class World:
         plt.legend()
         plt.xlabel('time')
         plt.ylabel('count')
-        bytes = io.BytesIO()
-        plt.savefig(bytes, format='svg')
-        svg = bytes.getvalue()
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png')
+        buf.seek(0)
+        png_bytes = buf.getvalue()
         plt.close(fig)
-        return svg.decode()
+        return png_bytes
             
     def __repr__(self):
         matrix = [[" " for w in range(self.pheight)] for h in range(self.pwidth)]
