@@ -118,13 +118,13 @@ class World:
                 
     def run(self, widgets, width=4.0, height=3.0, pixels=10):
         self.state = "running"
-        while 0 < len(world.animals) and self.state == "running":
+        while 0 < len(self.animals) and self.state == "running":
             self.ticks += 1
             self.update()
             stats = self.get_stats()
             self.history.append(stats)
             widgets["plot"].value = self.plot(width, height)
-            widgets["canvas"].value = str(world.draw(pixels))
+            widgets["canvas"].value = str(self.draw(pixels))
             widgets["sheep"].value = str(stats[0])
             widgets["wolves"].value = str(stats[1])
             widgets["grass"].value = str(stats[2])
