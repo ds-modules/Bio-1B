@@ -21,9 +21,7 @@ def populations_predation_episode(parameters):
     num_prey_to_eat = int(parameters['predator_population'] * 0.3)
     chance_eaten = np.multiply(parameters['population_sizes'], parameters['predation_rates'])
     chance_eaten = np.divide(chance_eaten, sum(chance_eaten))
-    prey_eaten = np.random.choice(prey_species_count, num_prey_to_eat, replace=True, p=chance_eaten)
-    yield_counts = [list(prey_eaten).count(prey) for prey in range(prey_species_count)]
-    return yield_counts
+    return np.random.multinomial(num_prey_to_eat, chance_eaten)
 
 def populations_eat_prey(parameters, yield_counts):
     reproduction_rates, population_sizes = parameters['reproduction_rates'], parameters['population_sizes']
@@ -57,9 +55,9 @@ population_size_1 = widgets.IntSlider(description='Prey 1 Population Size', valu
 population_size_2 = widgets.IntSlider(description='Prey 2 Population Size', value=150, min=0, max=1000, style=style)
 population_size_3 = widgets.IntSlider(description='Prey 3 Population Size', value=150, min=0, max=1000, style=style)
 
-reproduction_rate_1 = widgets.FloatSlider(description='Prey 1 Reproduction Rate', value=1.2, min=0.5, max=2, style=style)
-reproduction_rate_2 = widgets.FloatSlider(description='Prey 2 Reproduction Rate', value=1.2, min=0.5, max=2, style=style)
-reproduction_rate_3 = widgets.FloatSlider(description='Prey 3 Reproduction Rate', value=1.2, min=0.5, max=2, style=style)
+reproduction_rate_1 = widgets.FloatSlider(description='Prey 1 Reproduction Rate', value=1.2, min=1, max=1.5, style=style)
+reproduction_rate_2 = widgets.FloatSlider(description='Prey 2 Reproduction Rate', value=1.2, min=1, max=1.5, style=style)
+reproduction_rate_3 = widgets.FloatSlider(description='Prey 3 Reproduction Rate', value=1.2, min=1, max=1.5, style=style)
 
 predation_rate_1 = widgets.IntSlider(description='Prey 1 Predation Rate', value=5, min=0, max=10, style=style)
 predation_rate_2 = widgets.IntSlider(description='Prey 2 Predation Rate', value=5, min=0, max=10, style=style)
@@ -67,7 +65,7 @@ predation_rate_3 = widgets.IntSlider(description='Prey 3 Predation Rate', value=
 
 carrying_capacity = widgets.IntSlider(description='Carrying Capacity', value=600, min=0, max=1000, style=style)
 predator_population = widgets.IntSlider(description='Predator Population', value=200, min=0, max=500, style=style)
-generations = widgets.IntSlider(description='Generations', value=100, min=0, max=100, style=style)
+generations = widgets.IntSlider(description='Generations', value=100, min=0, max=250, style=style)
 
 reset_populations_button = widgets.Button(description='Reset', layout=widgets.Layout(width='100%', height='100%'))
 simulate_populations_button = widgets.Button(description='Simulate', layout=widgets.Layout(width='100%', height='100%'))

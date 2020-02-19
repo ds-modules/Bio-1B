@@ -9,37 +9,59 @@ import matplotlib
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 
-def simulate_predation(parameters):
-    if parameters['predator_population'] == 0 or parameters['prey_population'] == 0:
-        return 0
-    predator_population = parameters['predator_population']
-    prey_rate = min(1, parameters['prey_population'] / parameters['carrying_capacity'])
-    return np.random.binomial(predator_population, prey_rate)
+def populations_validate_and_normalize_parameters(parameters):
+    parameters['population_sizes'] = parameters['starting_population_sizes']
+    assert len(parameters['population_sizes']) == len(parameters['reproduction_rates'])
+    parameters['predation_rates'] = np.divide(parameters['predation_rates'], sum(parameters['predation_rates']))
 
-def advance_generation(parameters, prey_eaten):
-    L = max(0, parameters['prey_population'] - prey_eaten)
-    K = parameters['carrying_capacity']
-    parameters['prey_population'] = int(L + (parameters['prey_reproduction_rate'] * L * (K-L)/K))
-    parameters['predator_population'] = int(prey_eaten / parameters['predator_birth_constant']) if prey_eaten > 0 else 0
+def populations_predation_episode(parameters):
+    if sum(parameters['population_sizes']) == 0:
+        return parameters['population_sizes']
+    prey_species_count = len(parameters['population_sizes'])
+    num_prey_to_eat = int(parameters['predator_population'] * 0.3)
+    chance_eaten = np.multiply(parameters['population_sizes'], parameters['predation_rates'])
+    chance_eaten = np.divide(chance_eaten, sum(chance_eaten))
+    return np.random.multinomial(num_prey_to_eat, chance_eaten)
+
+def populations_eat_prey(parameters, yield_counts):
+    reproduction_rates, population_sizes = parameters['reproduction_rates'], parameters['population_sizes']
+    new_population_sizes = []
+    for (reproduction_rate, population, yield_count) in zip(reproduction_rates, population_sizes, yield_counts):
+        new_population_sizes.append(max(0, int(reproduction_rate * (population - yield_count))))
+    parameters['population_sizes'] = new_population_sizes
+
+def populations_process_carrying_capacity(parameters):
+    carrying_capacity, population_sizes = parameters['carrying_capacity'], parameters['population_sizes']
+    total_population = sum(population_sizes)
+    if carrying_capacity != 0 and total_population > carrying_capacity:
+        ratio = carrying_capacity / total_population
+        parameters['population_sizes'] = [int(population * ratio) for population in population_sizes]
 
 def populations_simulate(parameters):
-    population_df = pd.DataFrame(columns=['Generation', 'Predator', 'Prey']).set_index('Generation')
-    population_df.loc[0] = [parameters['predator_population'], parameters['prey_population']]
+    populations_validate_and_normalize_parameters(parameters)
+    prey_names = ['Prey ' + str(i+1) for i in range(len(parameters['population_sizes']))]
+    population_df = pd.DataFrame(columns=['Generation'] + prey_names).set_index('Generation')
+    population_df.loc[0] = parameters['population_sizes']
     for generation in np.arange(1, 1 + parameters['generations']):
-        prey_eaten = simulate_predation(parameters)
-        advance_generation(parameters, prey_eaten)
-        population_df.loc[generation] = [parameters['predator_population'], parameters['prey_population']]
+        yield_counts = populations_predation_episode(parameters)
+        populations_eat_prey(parameters, yield_counts)
+        populations_process_carrying_capacity(parameters)
+        population_df.loc[generation] = parameters['population_sizes']
     return population_df
 
 style = {'description_width': 'initial'}
 
-prey_population = widgets.IntSlider(description='Prey Population Size', value=300, min=0, max=1000, style=style)
-predator_population = widgets.IntSlider(description='Predator Population Size', value=200, min=0, max=1000, style=style)
+population_size_1 = widgets.IntSlider(description='Prey 1 Population Size', value=250, min=0, max=1000, style=style)
+population_size_2 = widgets.IntSlider(description='Prey 2 Population Size', value=250, min=0, max=1000, style=style)
 
-prey_reproduction_rate = widgets.FloatSlider(description='Prey Reproduction Rate', value=0.75, min=0.5, max=1, style=style)
-predator_birth_constant = widgets.FloatSlider(description='Predator Birth Constant (c)', value=0.8, min=0.1, max=2, style=style)
+reproduction_rate_1 = widgets.FloatSlider(description='Prey 1 Reproduction Rate', value=1.2, min=1, max=1.5, style=style)
+reproduction_rate_2 = widgets.FloatSlider(description='Prey 2 Reproduction Rate', value=1.2, min=1, max=1.5, style=style)
 
-carrying_capacity = widgets.IntSlider(description='Prey Carrying Capacity', value=500, min=0, max=1000, style=style)
+predation_rate_1 = widgets.IntSlider(description='Prey 1 Predation Rate', value=5, min=0, max=10, style=style)
+predation_rate_2 = widgets.IntSlider(description='Prey 2 Predation Rate', value=5, min=0, max=10, style=style)
+
+carrying_capacity = widgets.IntSlider(description='Carrying Capacity', value=600, min=0, max=1000, style=style)
+predator_population = widgets.IntSlider(description='Predator Population', value=200, min=0, max=500, style=style)
 generations = widgets.IntSlider(description='Generations', value=100, min=0, max=250, style=style)
 
 reset_populations_button = widgets.Button(description='Reset', layout=widgets.Layout(width='100%', height='100%'))
@@ -47,32 +69,43 @@ simulate_populations_button = widgets.Button(description='Simulate', layout=widg
     
 def show_widget():
     clear_output()
-    population_box = widgets.VBox([prey_population, predator_population])
-    reproduction_box = widgets.VBox([prey_reproduction_rate, predator_birth_constant])
-    general_box = widgets.VBox([carrying_capacity, generations])
+    prey_1_box = widgets.VBox([population_size_1, reproduction_rate_1, predation_rate_1])
+    prey_2_box = widgets.VBox([population_size_2, reproduction_rate_2, predation_rate_2])
+    general_box = widgets.HBox([carrying_capacity, predator_population, generations])
     reset_box = widgets.HBox([reset_populations_button])
     simulate_box = widgets.HBox([simulate_populations_button])
     
-    display(widgets.HBox([population_box, reproduction_box, general_box]))
-    display(widgets.VBox([reset_box, simulate_box]))
+    """
+    tab = widgets.Tab([prey_1_box, prey_2_box, prey_3_box])
+    tab.set_title(0, 'Prey 1')
+    tab.set_title(1, 'Prey 2')
+    tab.set_title(2, 'Prey 3')
+    display(tab)
+    """
+    
+    display(widgets.HBox([prey_1_box, prey_2_box]))
+    display(widgets.VBox([general_box, reset_box, simulate_box]))
     
 def get_populations_parameters():
     parameters = {}
-    parameters['prey_population'] = prey_population.value
-    parameters['predator_population'] = predator_population.value
-    parameters['prey_reproduction_rate'] = prey_reproduction_rate.value
-    parameters['predator_birth_constant'] = predator_birth_constant.value
+    parameters['starting_population_sizes'] = [population_size_1.value, population_size_2.value]
+    parameters['reproduction_rates'] = [reproduction_rate_1.value, reproduction_rate_2.value]
+    parameters['predation_rates'] = [predation_rate_1.value, predation_rate_2.value]
     parameters['carrying_capacity'] = carrying_capacity.value
+    parameters['predator_population'] = predator_population.value
     parameters['generations'] = generations.value
     return parameters
 
 @reset_populations_button.on_click
 def reset_populations(_):
-    prey_population.value=300
+    population_size_1.value=250
+    population_size_2.value=250
+    reproduction_rate_1.value=1.2
+    reproduction_rate_2.value=1.2
+    predation_rate_1.value=5
+    predation_rate_2.value=5
+    carrying_capacity.value=600
     predator_population.value=200
-    prey_reproduction_rate.value=0.75
-    predator_birth_constant.value=0.8
-    carrying_capacity.value=500
     generations.value=100
     show_widget()
     
