@@ -6,8 +6,9 @@ import time
 import io
 import matplotlib.pyplot as plt
 import matplotlib.patches
-from calysto.graphics import *
 import threading
+from ipywidgets import *
+from calysto.graphics import *
 
 class World:
     def __init__(self, pwidth=50, pheight=50, grass=True, 
@@ -302,3 +303,125 @@ class Sheep(Animal):
         sheep.fill("white")
         sheep.stroke("white")
         sheep.draw(canvas)        
+
+        
+world = World(25, 25, grass=True, sheep=50, wolves=25)
+
+# widgets:
+ticks = Text(description="Ticks:")
+sheep = Text(description="sheep:", margin=5, width="60px")
+wolves = Text(description="wolves:", margin=5, width="60px")
+grass = Text(description="grass/4:", margin=5, width="60px")
+canvas = HTML(margin=10)
+plot = Image()
+setup_button = Button(description="setup", width="47%", margin=5)
+go_button = Button(description="go", width="47%", margin=5)
+grass_checkbox = Checkbox(description="grass?", margin=5)
+style = {'description_width': 'initial'}
+grass_regrowth_time = IntSlider(description="grass_regrowth_time:",
+                                min=0, max=100, margin=5, width="300px", style=style)
+sheep_slider = IntSlider(description="initial_number_sheep:",
+                         min=0, max=250, margin=5, width="100px", style=style)
+wolves_slider = IntSlider(description="initial_number_wolves:",
+                          min=0, max=250, margin=5, width="100px", style=style)
+sheep_gain_from_food_slider = IntSlider(description="sheep_gain_from_food:",
+                                        min=0, max=50, margin=5, width="100px", style=style)
+wolf_gain_from_food_slider = IntSlider(description="wolf_gain_from_food:",
+                                       min=0, max=100, margin=5, width="100px", style=style)
+sheep_reproduce_slider = FloatSlider(description="sheep_reproduce:",
+                                     min=0, max=20, margin=5, width="100px", style=style)
+wolf_reproduce_slider = FloatSlider(description="wolf_reproduce:",
+                                    min=0, max=20, margin=5, width="100px", style=style)
+    
+def show_widget():
+    # layout:
+    row1 = HBox([setup_button, go_button], background_color="lightblue", width="100%")
+    row2 = HBox([grass_checkbox, grass_regrowth_time], background_color="lightgreen", width="100%")
+    row3 = HBox([sheep_slider, wolves_slider], background_color="lightgreen", width="100%")
+    row4 = HBox([sheep_gain_from_food_slider, wolf_gain_from_food_slider, ], background_color="lightgreen", width="100%")
+    row5 = HBox([sheep_reproduce_slider, wolf_reproduce_slider], background_color="lightgreen", width="100%")
+    row61 = HBox([sheep], background_color="Khaki", width="100%")
+    row62 = HBox([wolves], background_color="Khaki", width="100%")
+    row63 = HBox([grass], background_color="Khaki", width="100%")
+    row7 = HBox([plot], width="100%")
+    widgets = HBox([VBox([row1, row2, row3, row4, row5, 
+                          row61, row62, row63, row7], width="60%"), 
+                    VBox([ticks, canvas], background_color="Khaki")], width="100%")
+
+    # update:
+    ticks.value = str(world.ticks)
+    canvas.value = str(world.draw(15))
+    plot.value = world.plot(6.0, 4.0)
+    grass_checkbox.value = world.use_grass
+    grass_regrowth_time.value = world.grass_regrowth_time
+    sheep_slider.value = world.initial_number_sheep
+    wolves_slider.value = world.initial_number_wolves
+    sheep_gain_from_food_slider.value = Sheep.GAIN_FROM_FOOD
+    wolf_gain_from_food_slider.value = Wolf.GAIN_FROM_FOOD
+    sheep_reproduce_slider.value = Sheep.REPRODUCE
+    wolf_reproduce_slider.value = Wolf.REPRODUCE
+    stats = world.get_stats()
+    sheep.value = str(stats[0])
+    wolves.value = str(stats[1])
+    grass.value = str(stats[2])
+    ticks.value = str(world.ticks)
+
+    def update(args):
+        if args["name"] != "value":
+            return
+        owner = args["owner"]
+        name = args["name"]
+        value = args["new"]
+        if owner == grass_checkbox:
+            world.use_grass = value
+        elif owner == grass_regrowth_time:
+            world.grass_regrowth_time = value
+        elif owner == sheep_slider:
+            world.initial_number_sheep = value
+        elif owner == wolves_slider:
+            world.initial_number_wolves = value
+        elif owner == sheep_gain_from_food_slider:
+            Sheep.GAIN_FROM_FOOD = value
+        elif owner == wolf_gain_from_food_slider:
+            Wolf.GAIN_FROM_FOOD = value
+        elif owner == sheep_reproduce_slider:
+            Sheep.REPRODUCE = value
+        elif owner == wolf_reproduce_slider:
+            Wolf.REPRODUCE = value
+
+    def setup(widgets):
+        world.setup()
+        canvas.value = str(world.draw(15))
+        plot.value = world.plot(6.0, 4.0)
+        stats = world.get_stats()
+        sheep.value = str(stats[0])
+        wolves.value = str(stats[1])
+        grass.value = str(stats[2])
+        ticks.value = str(world.ticks)
+
+    def run(widgets):
+        global thread
+        if world.state == "stopped":
+            go_button.description = "pause"
+            w = {"canvas": canvas, "plot": plot, "ticks": ticks, 
+                 "sheep": sheep, "wolves": wolves, "grass": grass}
+            thread = threading.Thread(target=lambda: world.run(w, 6.0, 4.0, 15))
+            thread.start()
+        else:
+            go_button.description = "go"
+            world.state = "stopped"
+            thread.join()
+
+    grass_checkbox.observe(update)
+    grass_regrowth_time.observe(update)
+    sheep_slider.observe(update)
+    wolves_slider.observe(update)
+    sheep_gain_from_food_slider.observe(update)
+    wolf_gain_from_food_slider.observe(update)
+    sheep_reproduce_slider.observe(update)
+    wolf_reproduce_slider.observe(update)
+
+    setup_button.on_click(setup)
+    go_button.on_click(run)
+
+    widgets
