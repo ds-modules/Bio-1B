@@ -9,6 +9,7 @@ import matplotlib.patches
 import threading
 from ipywidgets import *
 from calysto.graphics import *
+import ipywidgets as wi
 
 class World:
     def __init__(self, pwidth=50, pheight=50, grass=True, 
@@ -308,29 +309,29 @@ class Sheep(Animal):
 world = World(25, 25, grass=True, sheep=50, wolves=25)
 
 # widgets:
-ticks = Text(description="Ticks:")
-sheep = Text(description="sheep:", margin=5, width="60px")
-wolves = Text(description="wolves:", margin=5, width="60px")
-grass = Text(description="grass/4:", margin=5, width="60px")
+ticks = wi.Text(description="Ticks:")
+sheep = wi.Text(description="sheep:", margin=5, width="60px")
+wolves = wi.Text(description="wolves:", margin=5, width="60px")
+grass = wi.Text(description="grass/4:", margin=5, width="60px")
 canvas = HTML(margin=10)
 plot = Image()
-setup_button = Button(description="setup", width="47%", margin=5)
-go_button = Button(description="go", width="47%", margin=5)
-grass_checkbox = Checkbox(description="grass?", margin=5)
+setup_button = wi.Button(description="setup", width="47%", margin=5)
+go_button = wi.Button(description="go", width="47%", margin=5)
+grass_checkbox = wi.Checkbox(description="grass?", margin=5)
 style = {'description_width': 'initial'}
-grass_regrowth_time = IntSlider(description="grass_regrowth_time:",
+grass_regrowth_time = wi.IntSlider(description="grass_regrowth_time:",
                                 min=0, max=100, margin=5, width="300px", style=style)
-sheep_slider = IntSlider(description="initial_number_sheep:",
+sheep_slider = wi.IntSlider(description="initial_number_sheep:",
                          min=0, max=250, margin=5, width="100px", style=style)
-wolves_slider = IntSlider(description="initial_number_wolves:",
+wolves_slider = wi.IntSlider(description="initial_number_wolves:",
                           min=0, max=250, margin=5, width="100px", style=style)
-sheep_gain_from_food_slider = IntSlider(description="sheep_gain_from_food:",
+sheep_gain_from_food_slider = wi.IntSlider(description="sheep_gain_from_food:",
                                         min=0, max=50, margin=5, width="100px", style=style)
-wolf_gain_from_food_slider = IntSlider(description="wolf_gain_from_food:",
+wolf_gain_from_food_slider = wi.IntSlider(description="wolf_gain_from_food:",
                                        min=0, max=100, margin=5, width="100px", style=style)
-sheep_reproduce_slider = FloatSlider(description="sheep_reproduce:",
+sheep_reproduce_slider = wi.FloatSlider(description="sheep_reproduce:",
                                      min=0, max=20, margin=5, width="100px", style=style)
-wolf_reproduce_slider = FloatSlider(description="wolf_reproduce:",
+wolf_reproduce_slider = wi.FloatSlider(description="wolf_reproduce:",
                                     min=0, max=20, margin=5, width="100px", style=style)
     
 def show_widget():
@@ -424,4 +425,4 @@ def show_widget():
     setup_button.on_click(setup)
     go_button.on_click(run)
 
-    widgets
+    return widgets
