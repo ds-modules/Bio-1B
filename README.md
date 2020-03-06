@@ -5,21 +5,31 @@
 
 **Code Maintenance:** Elias Saravia
 
+## Darwin's Finches Notebook
+
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ds-modules/Bio-1B/master)
+[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](http://datahub.berkeley.edu/user-redirect/interact?account=ds-modules&repo=Bio-1B&branch=master&path=Darwin%20Finches/Jupyter%20Introduction%20Darwin's%20Finches.ipynb)
+
+#### Description
+This notebook uses data science tools to analyze data representing beak sizes of Darwin's Finches, Geospiza fortis, for those that survived a drought and those that did not. The distributions are compared using permutation testing and the mean differences between distributions. P-value tests are conducted to determine statistical signgificance. This is a Jupyter Introduction Notebook to prepare students for the Strawberry Creek Lab.
+
+#### Sources & Contributors
+
+
 ## Strawberry Creek Notebook
 
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ds-modules/COGSCI-1/master)
-[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](http://datahub.berkeley.edu/user-redirect/interact?account=ds-modules&repo=COGSCI-1&branch=master&path=cogsci1_notebook.ipynb)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ds-modules/Bio-1B/master)
+[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](http://datahub.berkeley.edu/user-redirect/interact?account=ds-modules&repo=Bio-1B&branch=master&path=Strawberry%20Creek/Strawberry%20Creek%20Notebook.ipynb)
 
 #### Description
 This notebook uses data science tools to analyze, interpret and visualize student collected data from the UC Berkeley campus. Using fundamental data analytics, this notebooks uses biological metrics to determine whether or not there is a statistical significance of the ecological health of two branches of Strawberry Creek. 
 
 #### Sources & Contributors
 
-
 ## Predator Prey Notebook
 
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ds-modules/COGSCI-1/master)
-[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](http://datahub.berkeley.edu/user-redirect/interact?account=ds-modules&repo=COGSCI-1&branch=master&path=cogsci1_notebook.ipynb)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ds-modules/Bio-1B/master)
+[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](http://datahub.berkeley.edu/user-redirect/interact?account=ds-modules&repo=Bio-1B&branch=master&path=Predator%20Prey/Predator%20Prey%20Notebook.ipynb)
 
 #### Description
 This notebook uses data science tools to simulate predator prey interactions and observe the changes in these interactions under different parameters. Data analysis tools allows for simulation under circumstances that otherwise would not have been feasible in real life. The main purpose of this notebook is to determine how certain parameters affect predator prey interactions.
