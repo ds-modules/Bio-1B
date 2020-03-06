@@ -1,9 +1,15 @@
 # Bio-1B
-Instructors: George Roderick, John Huelsenbeck & Alan Shabel (Spring 2020)
-Team Lead: Elias Saravia
-Developers : Andy Sheu, Joshua Asuncion & Karalyn Chong
+**Instructors:** George Roderick, John Huelsenbeck & Alan Shabel (Spring 2020)
 
-## Strawberry Creek Notebooks
+**Developers:** Andy Sheu, Joshua Asuncion & Karalyn Chong
+
+**Code Maintenance:** Elias Saravia
+
+## Strawberry Creek Notebook
+
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ds-modules/COGSCI-1/master)
+[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](http://datahub.berkeley.edu/user-redirect/interact?account=ds-modules&repo=COGSCI-1&branch=master&path=cogsci1_notebook.ipynb)
+
 #### Description
 This notebook uses data science tools to analyze, interpret and visualize student collected data from the UC Berkeley campus. Using fundamental data analytics, this notebooks uses biological metrics to determine whether or not there is a statistical significance of the ecological health of two branches of Strawberry Creek. 
 
@@ -11,6 +17,10 @@ This notebook uses data science tools to analyze, interpret and visualize studen
 
 
 ## Predator Prey Notebook
+
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ds-modules/COGSCI-1/master)
+[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](http://datahub.berkeley.edu/user-redirect/interact?account=ds-modules&repo=COGSCI-1&branch=master&path=cogsci1_notebook.ipynb)
+
 #### Description
 This notebook uses data science tools to simulate predator prey interactions and observe the changes in these interactions under different parameters. Data analysis tools allows for simulation under circumstances that otherwise would not have been feasible in real life. The main purpose of this notebook is to determine how certain parameters affect predator prey interactions.
 
