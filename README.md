@@ -38,3 +38,5 @@ This notebook uses data science tools to simulate predator prey interactions and
 Predator Prey Interactions. (n.d.). Retrieved February 25, 2020, from http://www2.nau.edu/lrm22/lessons/predator_prey/predator_prey.html
 
 Lynx and Hare Data Set - http://www2.nau.edu/lrm22/lessons/predator_prey/predator_prey.html
+
+Sheep, Wolves, and Grass Simulation - https://jupyter.brynmawr.edu/services/public/dblank/BioCS115%20Computing%20through%20Biology/2016-Spring/Notebooks/16_Ecological_Models.ipynb
