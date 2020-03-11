@@ -134,8 +134,7 @@ class World:
         self.state = "stopped"
             
     def plot(self, width=4.0, height=3.0):
-        plt.rcParams['figure.figsize'] = (width, height)
-        fig = plt.figure()
+        plt.figure(figsize=(width, height))
         plt.plot([h[0] for h in self.history], "y", label="Sheep")
         plt.plot([h[1] for h in self.history], "k", label="Wolves")
         plt.plot([h[2] for h in self.history], "g", label="Grass")
@@ -146,8 +145,8 @@ class World:
         plt.savefig(buf, format='png')
         buf.seek(0)
         png_bytes = buf.getvalue()
-        plt.close(fig)
-        return png_bytes
+        plt.close('all')
+        return png_bytes;
             
     def __repr__(self):
         matrix = [[" " for w in range(self.pheight)] for h in range(self.pwidth)]
