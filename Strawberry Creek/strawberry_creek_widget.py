@@ -9,20 +9,21 @@ plt.style.use('fivethirtyeight')
 
 def mean_difference(stat, data):
     
-    def difference_in_means(SC_scores):
-        return abs(np.mean(SC_scores[:10]) - np.mean(SC_scores[10:]))
+    def difference_in_means(pd_series):
+        return abs(pd_series['North'].mean() - pd_series['South'].mean())
 
     n_repeats = 1000
-    permutation_differences = []
+    permutation_differences = np.array([])
     for i in range(n_repeats):
-        permutation = data[stat].sample(len(data[stat]))
-        new_difference = difference_in_means(permutation)
-        permutation_differences.append(new_difference)
+        permutation = pd.Series(
+            np.array(data[stat].sample(len(data[stat]))),
+            index=np.array(data['Fork'])
+        )
+        new_difference = np.array(difference_in_means(permutation))
+        permutation_differences = np.append(permutation_differences, new_difference)
         
     observed_difference = abs(data[data['Fork']=='North'].mean() - data[data['Fork']=='South'].mean())
-    p_val_count = sum(i <= observed_difference[stat] for i in permutation_differences)/len(permutation_differences)
-    if p_val_count > 0.5:
-        p_val_count = 1 - p_val_count
+    p_val_count = sum(i > observed_difference[stat] for i in permutation_differences)/len(permutation_differences)
     
     plt.figure(figsize=(12,4))
     
