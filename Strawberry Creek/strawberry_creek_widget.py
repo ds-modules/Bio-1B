@@ -28,14 +28,6 @@ def mean_difference(stat, data):
     plt.figure(figsize=(12,4))
     
     plt.subplot(121)
-    plt.hist(permutation_differences)
-    plt.axvline(observed_difference[stat], color='red', linestyle='--', label='Observed Difference')
-    plt.xlabel('Mean Difference')
-    plt.ylabel('Frequency')
-    plt.title(str(stat) + " Mean Differences " + "(P-Value: " + str(round(p_val_count, 3)) + ")")
-    plt.legend()
-    
-    plt.subplot(122)
     dataNorth = data[data['Fork'] == 'North']
     dataSouth = data[data['Fork'] == 'South']
     plt.hist(dataNorth[stat], color='blue', alpha=0.5, label='North')
@@ -45,5 +37,13 @@ def mean_difference(stat, data):
     plt.xlabel(str(stat))
     plt.ylabel('Frequency')
     plt.title(str(stat) + " for North and South Fork")
+    plt.legend()
+    
+    plt.subplot(122)
+    plt.hist(permutation_differences)
+    plt.axvline(observed_difference[stat], color='red', linestyle='--', label='Observed Difference')
+    plt.xlabel('Mean Difference')
+    plt.ylabel('Frequency')
+    plt.title(str(stat) + " Mean Differences " + "(P-Value: " + str(round(p_val_count, 3)) + ")")
     plt.legend()
     
