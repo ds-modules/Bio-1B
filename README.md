@@ -16,10 +16,10 @@ This notebook uses data science tools to analyze data representing beak sizes of
 #### Sources & Contributors
 
 
-## Strawberry Creek Notebook
+## Bioindicators of Strawberry Creek Notebook
 
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ds-modules/Bio-1B/master)
-[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](http://datahub.berkeley.edu/user-redirect/interact?account=ds-modules&repo=Bio-1B&branch=master&path=Strawberry%20Creek/Strawberry%20Creek%20Notebook.ipynb)
+[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](http://datahub.berkeley.edu/user-redirect/interact?account=ds-modules&repo=Bio-1B&branch=master&path=Strawberry%20Creek/Bioindicators%20Notebook.ipynb)
 
 #### Description
 This notebook uses data science tools to analyze, interpret and visualize student collected data from the UC Berkeley campus. Using fundamental data analytics, this notebooks uses biological metrics to determine whether or not there is a statistical significance of the ecological health of two branches of Strawberry Creek. 
