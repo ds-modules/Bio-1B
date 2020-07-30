@@ -8,7 +8,7 @@
 ## Darwin's Finches Notebook
 
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ds-modules/Bio-1B/master)
-[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](https://tinyurl.com/intro-bio1b)
+[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](https://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fds-modules%2FBio-1B&urlpath=tree%2FBio-1B%2FDarwin%2520Finches%2FJupyter%2520Introduction%2520Darwin%27s%2520Finches.ipynb&branch=master)
 
 #### Description
 This notebook uses data science tools to analyze data representing beak sizes of Darwin's Finches, Geospiza fortis, for those that survived a drought and those that did not. The distributions are compared using permutation testing and the mean differences between distributions. P-value tests are conducted to determine statistical signgificance. This is a Jupyter Introduction Notebook to prepare students for the Strawberry Creek Lab.
