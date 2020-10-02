@@ -1,4 +1,6 @@
 # Bio-1B
+ **Instructors:** John P. Huelsenbeck, Bruce G Baldwin, David D. Ackerly ( Fall 2020 ) 
+
 **Instructors:** George Roderick, John Huelsenbeck & Alan Shabel (Spring 2020)
 
 **Developers:** Andy Sheu, Joshua Asuncion & Karalyn Chong
