@@ -3,7 +3,7 @@
 
 **Instructors:** George Roderick, John Huelsenbeck & Alan Shabel (Spring 2020)
 
-**Developers:** Andy Sheu, Joshua Asuncion & Karalyn Chong
+**Developers:** Andy Sheu, Joshua Asuncion, Karalyn Chong & Priscilla Zhang
 
 **Code Maintenance:** Elias Saravia
 
