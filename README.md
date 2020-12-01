@@ -13,7 +13,7 @@
 [![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](https://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fds-modules%2FBio-1B&urlpath=tree%2FBio-1B%2FDarwin%2520Finches%2FJupyter%2520Introduction%2520Darwin%27s%2520Finches.ipynb&branch=master)
 
 #### Description
-This notebook uses data science tools to analyze data representing beak sizes of Darwin's Finches, Geospiza fortis, for those that survived a drought and those that did not. The distributions are compared using permutation testing and the mean differences between distributions. P-value tests are conducted to determine statistical signgificance. This is a Jupyter Introduction Notebook to prepare students for the Strawberry Creek Lab.
+This notebook uses data science tools to analyze data representing beak sizes of Darwin's Finches, Geospiza fortis, for those that survived a drought and those that did not. The distributions are compared using permutation testing and the mean differences between distributions. P-value tests are conducted to determine statistical significance. This is a Jupyter Introduction Notebook to prepare students for the Strawberry Creek Lab.
 
 #### Sources & Contributors
 
@@ -46,3 +46,10 @@ Predator Prey Interactions. (n.d.). Retrieved February 25, 2020, from http://www
 Lynx and Hare Data Set - http://www2.nau.edu/lrm22/lessons/predator_prey/predator_prey.html
 
 Sheep, Wolves, and Grass Simulation - https://jupyter.brynmawr.edu/services/public/dblank/BioCS115%20Computing%20through%20Biology/2016-Spring/Notebooks/16_Ecological_Models.ipynb
+
+## Mousey Notebook
+
+[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](http://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fds-modules%2FBio-1B&urlpath=tree%2FBio-1B%2F%2FMousey%2FMousey.ipynb&branch=master)
+
+#### Description
+This notebook uses data science tools to simulate natural selection for light and dark mice in light and dark environments. Parameters simulated in this program include mutation rate, selection intensity, mortality rate, and migration rate. Furthermore, analysis is conducted on the allele frequencies over a number of generations.
