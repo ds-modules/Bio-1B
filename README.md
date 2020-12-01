@@ -49,6 +49,7 @@ Sheep, Wolves, and Grass Simulation - https://jupyter.brynmawr.edu/services/publ
 
 ## Mousey Notebook
 
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ds-modules/Bio-1B/master)
 [![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](http://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fds-modules%2FBio-1B&urlpath=tree%2FBio-1B%2F%2FMousey%2FMousey.ipynb&branch=master)
 
 #### Description
