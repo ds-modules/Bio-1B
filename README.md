@@ -20,6 +20,9 @@ This notebook uses data science tools to analyze data representing beak sizes of
 
 ## Bioindicators of Strawberry Creek Notebook
 
+[Fall 2022] If you are using Google Sheets Data From Classrooms, click this Datahub link:
+[![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](https://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fds-modules%2FBio-1B&branch=master&urlpath=tree%2FBio-1B%2FStrawberry+Creek%2FBioindicators+Notebook.ipynb)
+
 If you are using Dataset 1, click this Datahub link:
 [![Binder](https://img.shields.io/badge/Launch-UCB%20Datahub-blue.svg)](https://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fds-modules%2FBio-1B&urlpath=tree%2FBio-1B%2FStrawberry%2520Creek%2FBioindicators%2520Notebook%2520%28Dataset%25201%29.ipynb&branch=master)
 
