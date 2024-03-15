@@ -47,3 +47,7 @@ def mean_difference(stat, data):
     plt.title(str(stat) + " Mean Differences " + "(P-Value: " + str(round(p_val_count, 3)) + ")")
     plt.legend()
     
+def load_data(room_numer):
+    df = pd.read_csv("sp24.csv")
+    df = df[df['Room'] == room_numer]
+    return df
