@@ -49,5 +49,5 @@ def mean_difference(stat, data):
     
 def load_data(room_numer):
     df = pd.read_csv("sp24.csv")
-    df = df[df['Room'] == room_numer]
+    df = df[df['Room'] == room_numer].drop(columns=['Room'])
     return df
