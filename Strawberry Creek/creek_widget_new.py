@@ -48,6 +48,6 @@ def mean_difference(stat, data):
     plt.legend()
     
 def load_data(room_numer):
-    df = pd.read_csv("sp24.csv")
+    df = pd.read_csv("SC_Data_Fa24.csv")
     df = df[df['Room'] == room_numer].drop(columns=['Room'])
     return df
