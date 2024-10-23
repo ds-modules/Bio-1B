@@ -44,7 +44,8 @@ def mean_difference(stat, data):
     plt.axvline(observed_difference[stat], color='red', linestyle='--', label='Observed Difference')
     plt.xlabel('Mean Difference')
     plt.ylabel('Frequency')
-    plt.title(str(stat) + " Mean Differences " + "(P-Value: " + str(round(p_val_count, 3)) + ")")
+    #plt.title(str(stat) + " Mean Differences " + "(P-Value: " + str(round(p_val_count, 3)) + ")")
+    plt.title(f"{stat} Mean Differences (P-Value: {round(float(p_val_count), 3):.3f})") # added EVD 10/21/24
     plt.legend()
     
 def load_data(room_numer):
