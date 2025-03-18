@@ -59,3 +59,10 @@ def load_data(room_numer):
     df = pd.read_csv("SC_Data_Sp25.csv")
     df = df[df['Room'] == room_numer].drop(columns=['Room'])
     return df
+
+def load_section_data(section):
+    df = pd.read_csv("SC_Data_Sp25_Section.csv")
+    df = df[df['Section'] == section].drop(columns=['Section', "Room"])
+    return df
+
+sections_options = [111, 121, 211, 221, 311, 321, 411, 421, 112, 122, 212, 222, 312, 322, 412, 422, 113, 123, 213, 223, 323, 413, 513]
