@@ -25,16 +25,10 @@ def mean_difference(stat, data):
     observed_difference = abs(data[data['Fork']=='North'].mean(numeric_only=True) - data[data['Fork']=='South'].mean(numeric_only=True))
     p_val_count = float(sum(i > observed_difference[stat] for i in permutation_differences)/len(permutation_differences))
     
-    if p_val_count < 0.0001:
-        p_val_label = "P-Value: < 0.0001"
-    elif p_val_count < 0.001:
+    if p_val_count < 0.001:
         p_val_label = "P-Value: < 0.001"
-    elif p_val_count < 0.01:
-        p_val_label = "P-Value: < 0.01"
-    elif p_val_count < 0.05:
-        p_val_label = "P-Value: < 0.05"
     else:
-        p_val_label = "P-Value: > 0.05"
+        p_val_label = "P-Value: " + str(round(p_val_count, 3))
         
     
     plt.figure(figsize=(14,5))
