@@ -23,9 +23,21 @@ def mean_difference(stat, data):
         permutation_differences = np.append(permutation_differences, new_difference)
         
     observed_difference = abs(data[data['Fork']=='North'].mean(numeric_only=True) - data[data['Fork']=='South'].mean(numeric_only=True))
-    p_val_count = sum(i > observed_difference[stat] for i in permutation_differences)/len(permutation_differences)
+    p_val_count = float(sum(i > observed_difference[stat] for i in permutation_differences)/len(permutation_differences))
     
-    plt.figure(figsize=(12,4))
+    if p_val_count < 0.0001:
+        p_val_label = "P-Value: < 0.0001"
+    elif p_val_count < 0.001:
+        p_val_label = "P-Value: < 0.001"
+    elif p_val_count < 0.01:
+        p_val_label = "P-Value: < 0.01"
+    elif p_val_count < 0.05:
+        p_val_label = "P-Value: < 0.05"
+    else:
+        p_val_label = "P-Value: > 0.05"
+        
+    
+    plt.figure(figsize=(14,5))
     
     plt.subplot(121)
     dataNorth = data[data['Fork'] == 'North']
@@ -44,9 +56,10 @@ def mean_difference(stat, data):
     plt.axvline(observed_difference[stat], color='red', linestyle='--', label='Observed Difference')
     plt.xlabel('Mean Difference')
     plt.ylabel('Frequency')
-    #plt.title(str(stat) + " Mean Differences " + "(P-Value: " + str(round(p_val_count, 3)) + ")")
-    plt.title(f"{stat} Mean Differences (P-Value: {round(float(p_val_count), 3):.3f})") # added EVD 10/21/24
+    plt.title(f"{stat} Mean Differences ({p_val_label})")
     plt.legend()
+    
+    plt.subplots_adjust(wspace=0.3)
     
 def load_data(room_numer):
     df = pd.read_csv("SC_Data_Sp25.csv")
