@@ -133,7 +133,7 @@ What does this mean?
 
 -   the number of **variable sites** is the number of sites from the plot above at which at least one taxon has a different base than all of the other taxa.
 
-Pause here and answer Question 15 in your lab worksheet.
+Pause here and answer Question 14 in your lab worksheet.
 
 ## 2) Tree building, plotting, and character mapping
 
