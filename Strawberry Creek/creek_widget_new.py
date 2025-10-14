@@ -56,7 +56,7 @@ def mean_difference(stat, data):
     plt.subplots_adjust(wspace=0.3)
     
 def load_data(room_numer):
-    df = pd.read_csv("SC_Data_Sp25.csv")
+    df = pd.read_csv("SC_Data_Fa25.csv")
     df = df[df['Room'] == room_numer].drop(columns=['Room'])
     return df
 
