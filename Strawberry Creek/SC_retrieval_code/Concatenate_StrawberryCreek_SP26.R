@@ -45,7 +45,6 @@ env_vars <- c(
   "Site",
   "Plant Biodiversity",
   "Canopy Cover",
-  "EC",
   "pH",
   "Temp (C)",
   "Phosphate (ppm)",
@@ -128,7 +127,6 @@ final_tbl <- site_tbl |>
     Restoration,
     `Plant Biodiversity`,
     `Canopy Cover`,
-    EC,
     pH,
     `Temp (C)`,
     `Phosphate (ppm)`,
@@ -139,6 +137,9 @@ final_tbl <- site_tbl |>
   )
 
 # Save the final table to google drives
+# When you re-run the script and overwrite the spreadsheet file, it will 
+# generate a new url for that sheet, so the link in the Jupyter
+# Notebook should be manually fixed.
 folder <- as_id("1MYpC3AyPB0dwFucEuUOUDXwIx_DpAKNX")
 
 ss <- gs4_create(
@@ -152,3 +153,4 @@ drive_mv(
   name = "Pooled Student Data",
   overwrite = TRUE
 )
+
