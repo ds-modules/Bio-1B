@@ -29,8 +29,7 @@ env_vars <- c(
   "E.coli bacteria (CFUs/100mL)"
 )
 
-# Sections do not spell the canopy cover header identically, so every variant is
-# renamed back to the name used in env_vars before the tables are combined.
+# Sections do not spell the canopy cover header identically
 canopy_aliases <- c(
   "Canopy Cover" = "Canopy Cover %",
   "Canopy Cover" = "Canopy Cover (%)",
@@ -75,12 +74,12 @@ most_common <- function(x) {
 }
 
 # Read each spreadsheet and collapse them into a single table...
-# All spreadsheets are expected to have everything recorded in the sheet
-# titled "Sheet1". Otherwise it will throw an error.
+# The section sheets do not use a consistent tab name, so the first tab is read
+# positionally. Everything is expected to be recorded on that tab.
 data_secs <- lapply(secs, function(s) {
   raw <- read_sheet(
     ss = get(paste0("sec", s, "_url")),
-    sheet = "Sheet1",
+    sheet = 1,
     col_types = "c"
   ) |>
     mutate(across(everything(), as.character)) |>
@@ -148,7 +147,7 @@ final_tbl <- site_tbl |>
 # When you re-run the script and overwrite the spreadsheet file, it will
 # generate a new url for that sheet, so the link in the Jupyter
 # Notebook should be manually fixed.
-folder <- as_id("1MYpC3AyPB0dwFucEuUOUDXwIx_DpAKNX")
+folder <- as_id("1QlOHrHDPxl9Or_PFeRgXavSBK543JH7i")
 
 ss <- gs4_create(
   "Pooled Student Data",
