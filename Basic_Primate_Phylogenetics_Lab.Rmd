@@ -15,7 +15,7 @@ We'll use two software packages (Phangorn and pytools) to build phylogenetic tre
 
 ## 1) Software installations and loading
 
-If you are using the RStudio application or the RStudio environment in Juypter notebooks, run the code block below by clicking <shift and Enter> or clicking the small triangle or play button in the upper middle window. This step will take a moment, and you'll see some normal code ouptut. Don't be alarmed by the pink colored cells.
+If you are using the RStudio application or the RStudio environment in Juypter notebooks, run the code block below by pressing Shift and Enter simultaneously or clicking the small triangle or play button in the upper middle window. This step will take a moment, and you'll see some normal code ouptut. Don't be alarmed by the pink colored cells.
 
 ```{r install & load packages, message = FALSE}
 install.packages("phangorn", quiet = TRUE)
