@@ -137,14 +137,13 @@ Pause here and answer Question 14 in your lab worksheet.
 
 ## 2) Tree building, plotting, and character mapping
 
-Once again, we'll use `bab` to find all the most parsimonious trees. 
+Once again, we'll use `bab` to find all the most parsimonious trees. Now we find only one parsimonious tree. 
 
 ```{r parsimony hemoglobin tree,out.width="100%", fig.cap="Epsilon-Hemoglobin tree of primates."}
 Hemoglobin_tree <- bab(Hemoglobin)
 
 Hemoglobin_tree <- root(Hemoglobin_tree, "Goat", resolve.root = TRUE)
 
-**Now, we find only one most parsimonious tree.**
 par(mai = c(0.2,0.2,0.2,0.2))
 plot(Hemoglobin_tree)
 ```
