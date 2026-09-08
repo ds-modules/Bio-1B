@@ -1,7 +1,7 @@
 ---
 title: "Primate Phylogenetics Lab Code"
-author: "Isaac Krone"
-date: "2025-06-18"
+author: "Isaac Krone & Dr. Helian Ratsirarson"
+date: "2026-09-07"
 output: word_document
 ---
 
@@ -15,7 +15,7 @@ We'll use two software packages (Phangorn and pytools) to build phylogenetic tre
 
 ## 1) Software installations and loading
 
-If you are using the RStudio application or the RStudio environment in Juypter notebooks, run the code block below by clicking the green play button in the upper right-hand corner. This step will take a moment, and you'll see some normal code ouptut.
+If you are using the RStudio application or the RStudio environment in Juypter notebooks, run the code block below by clicking <shift and Enter> or clicking the small triangle or play button in the upper middle window. This step will take a moment, and you'll see some normal code ouptut. Don't be alarmed by the pink colored cells.
 
 ```{r install & load packages, message = FALSE}
 install.packages("phangorn", quiet = TRUE)
@@ -137,13 +137,14 @@ Pause here and answer Question 14 in your lab worksheet.
 
 ## 2) Tree building, plotting, and character mapping
 
-Once again, we'll use `bab` to find all the most parsimonious trees. Now, we find only one most parsimonious tree.
+Once again, we'll use `bab` to find all the most parsimonious trees. 
 
 ```{r parsimony hemoglobin tree,out.width="100%", fig.cap="Epsilon-Hemoglobin tree of primates."}
 Hemoglobin_tree <- bab(Hemoglobin)
 
 Hemoglobin_tree <- root(Hemoglobin_tree, "Goat", resolve.root = TRUE)
 
+**Now, we find only one most parsimonious tree.**
 par(mai = c(0.2,0.2,0.2,0.2))
 plot(Hemoglobin_tree)
 ```
