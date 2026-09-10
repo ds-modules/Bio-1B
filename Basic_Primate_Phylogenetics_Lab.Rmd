@@ -2,7 +2,7 @@
 title: "Primate Phylogenetics Lab Code"
 author: "Isaac Krone & Dr. Helian Ratsirarson"
 date: "2026-09-07"
-To Run a cell and Advance to the next one: Press **Shift** and **Enter** simultaneously
+To Run a cell and Advance to the next one: Press Shift and Enter simultaneously
 ---
 
 ```{r setup, include=FALSE}
@@ -15,7 +15,7 @@ We'll use two software packages (Phangorn and pytools) to build phylogenetic tre
 
 ## 1) Software installations and loading
 
-Run the code block below by pressing Shift and Enter simultaneously. This installation may take a moment, and you may see some normal code ouptut. Don't be alarmed by the pink colored cells unless you see the word ERROR. Tell your instructor if an ERROR occured.
+Run the code block below by pressing Shift and Enter simultaneously. This installation may take a moment, and you may see some normal code ouptut. Don't be alarmed by the pink colored cells unless you see the word ERROR on top of the utput cell. Tell your instructor if an ERROR occured. Otherwise, you may move on and run the next cell while the program loads the needed software.
 
 ```{r install & load packages, message = FALSE}
 install.packages("phangorn", quiet = TRUE)
